@@ -1,4 +1,4 @@
-package chnu.edu.websecuritylabs.item;
+package chnu.edu.websecuritylabs.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

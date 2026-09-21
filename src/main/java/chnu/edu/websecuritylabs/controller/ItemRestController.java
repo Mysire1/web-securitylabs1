@@ -1,5 +1,7 @@
-package chnu.edu.websecuritylabs.item;
+package chnu.edu.websecuritylabs.controller;
 
+import chnu.edu.websecuritylabs.model.Item;
+import chnu.edu.websecuritylabs.service.ItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

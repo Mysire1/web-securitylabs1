@@ -1,5 +1,6 @@
-package chnu.edu.websecuritylabs.item;
+package chnu.edu.websecuritylabs.service;
 
+import chnu.edu.websecuritylabs.model.Item;
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Service;
 
