@@ -24,8 +24,10 @@ public class SecurityConfig {
         http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(req -> req
                         .requestMatchers("/", "/index.html").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/v1/items/**").hasAnyRole("USER", "ADMIN")
-                        .requestMatchers("/api/v1/items/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/v1/items/**").hasAnyRole("USER", "MANAGER", "ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/v1/items/**").hasAnyRole("MANAGER", "ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/v1/items/**").hasAnyRole("MANAGER", "ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/v1/items/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .httpBasic(Customizer.withDefaults())
@@ -45,10 +47,14 @@ public class SecurityConfig {
                 .password(encoder.encode("admin"))
                 .roles("ADMIN")
                 .build();
+        UserDetails manager = User.withUsername("manager")
+                .password(encoder.encode("manager"))
+                .roles("MANAGER")
+                .build();
         UserDetails user = User.withUsername("user")
                 .password(encoder.encode("user"))
                 .roles("USER")
                 .build();
-        return new InMemoryUserDetailsManager(admin, user);
+        return new InMemoryUserDetailsManager(admin, manager, user);
     }
 }
