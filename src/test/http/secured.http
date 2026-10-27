@@ -1,0 +1,66 @@
+### 1. GET ALL ITEMS - admin (200)
+GET http://localhost:8080/api/v1/items
+Authorization: Basic admin admin
+Accept: application/json
+
+### 2. GET ALL ITEMS - user (200)
+GET http://localhost:8080/api/v1/items
+Authorization: Basic user user
+Accept: application/json
+
+### 3. GET ALL ITEMS - no credentials (401)
+GET http://localhost:8080/api/v1/items
+Accept: application/json
+
+### 4. GET ALL ITEMS - bad credentials (401)
+GET http://localhost:8080/api/v1/items
+Authorization: Basic admin admin1
+Accept: application/json
+
+### 5. GET ONE ITEM - user (200)
+GET http://localhost:8080/api/v1/items/2
+Authorization: Basic user user
+Accept: application/json
+
+### 6. CREATE ONE ITEM - admin (200)
+POST http://localhost:8080/api/v1/items
+Authorization: Basic admin admin
+Content-Type: application/json
+
+{
+  "id": "4",
+  "name": "name4",
+  "description": "description4"
+}
+
+### 7. CREATE ONE ITEM - user (403)
+POST http://localhost:8080/api/v1/items
+Authorization: Basic user user
+Content-Type: application/json
+
+{
+  "id": "5",
+  "name": "name5",
+  "description": "description5"
+}
+
+### 8. UPDATE ONE ITEM - admin (200)
+PUT http://localhost:8080/api/v1/items
+Authorization: Basic admin admin
+Content-Type: application/json
+
+{
+  "id": "2",
+  "name": "name22",
+  "description": "description22"
+}
+
+### 9. DELETE ONE ITEM - user (403)
+DELETE http://localhost:8080/api/v1/items/3
+Authorization: Basic user user
+
+### 10. DELETE ONE ITEM - admin (200)
+DELETE http://localhost:8080/api/v1/items/3
+Authorization: Basic admin admin
+
+###
