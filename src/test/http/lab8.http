@@ -1,0 +1,26 @@
+### 1. GET JWT TOKEN - john (200, returns JWT)
+POST http://localhost:8080/api/v1/auth/authenticate
+Content-Type: application/json
+
+{
+  "email": "john@mail.com",
+  "password": "password"
+}
+
+> {% client.global.set("token", response.body); %}
+
+### 2. GET ALL ITEMS - with Bearer JWT (200)
+GET http://localhost:8080/api/v1/items
+Authorization: Bearer {{token}}
+Accept: application/json
+
+### 3. GET JWT TOKEN - wrong password (401)
+POST http://localhost:8080/api/v1/auth/authenticate
+Content-Type: application/json
+
+{
+  "email": "john@mail.com",
+  "password": "wrong"
+}
+
+###
