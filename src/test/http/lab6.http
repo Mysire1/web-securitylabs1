@@ -1,0 +1,71 @@
+### 1. GET ALL ITEMS - user (200, @PreAuthorize USER/MANAGER/ADMIN)
+GET http://localhost:8080/api/v1/items
+Authorization: Basic user user
+Accept: application/json
+
+### 2. GET ONE ITEM - admin (200, @PreAuthorize USER/MANAGER/ADMIN)
+GET http://localhost:8080/api/v1/items/1
+Authorization: Basic admin admin
+Accept: application/json
+
+### 3. GET ONE ITEM - no credentials (401)
+GET http://localhost:8080/api/v1/items/1
+Accept: application/json
+
+### 4. CREATE ONE ITEM - user (403, @PreAuthorize MANAGER/ADMIN)
+POST http://localhost:8080/api/v1/items
+Authorization: Basic user user
+Content-Type: application/json
+
+{
+  "id": "4",
+  "name": "name4",
+  "description": "description4"
+}
+
+### 5. CREATE ONE ITEM - manager (200, @PreAuthorize MANAGER/ADMIN)
+POST http://localhost:8080/api/v1/items
+Authorization: Basic manager manager
+Content-Type: application/json
+
+{
+  "id": "4",
+  "name": "name4",
+  "description": "description4"
+}
+
+### 6. UPDATE ONE ITEM - user (403, @PreAuthorize MANAGER/ADMIN)
+PUT http://localhost:8080/api/v1/items
+Authorization: Basic user user
+Content-Type: application/json
+
+{
+  "id": "2",
+  "name": "name22",
+  "description": "description22"
+}
+
+### 7. UPDATE ONE ITEM - admin (200, @PreAuthorize MANAGER/ADMIN)
+PUT http://localhost:8080/api/v1/items
+Authorization: Basic admin admin
+Content-Type: application/json
+
+{
+  "id": "2",
+  "name": "name22",
+  "description": "description22"
+}
+
+### 8. DELETE ONE ITEM - user (403, @PreAuthorize ADMIN)
+DELETE http://localhost:8080/api/v1/items/3
+Authorization: Basic user user
+
+### 9. DELETE ONE ITEM - manager (403, @PreAuthorize ADMIN)
+DELETE http://localhost:8080/api/v1/items/3
+Authorization: Basic manager manager
+
+### 10. DELETE ONE ITEM - admin (200, @PreAuthorize ADMIN)
+DELETE http://localhost:8080/api/v1/items/3
+Authorization: Basic admin admin
+
+###
